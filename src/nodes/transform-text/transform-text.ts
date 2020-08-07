@@ -31,7 +31,7 @@ const nodeInit: NodeInitializer = (RED): void => {
     }
   }
 
-  RED.nodes.registerType("lower-case", TransformTextNodeConstructor);
+  RED.nodes.registerType("transform-text", TransformTextNodeConstructor);
 };
 
 export = nodeInit;
