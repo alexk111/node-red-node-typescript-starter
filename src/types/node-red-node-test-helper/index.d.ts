@@ -10,7 +10,8 @@ declare module "node-red-node-test-helper" {
   ): void;
 
   export type TestNode = NodeInitializer | NodeInitializer[];
-  export type TestFlowsItem = Partial<NodeDef> & Pick<NodeDef, "id" | "type">;
+  export type TestFlowsItem<T extends NodeDef = NodeDef> = Partial<T> &
+    Pick<T, "id" | "type"> & { wires?: string[][] };
   export type TestFlows = Array<TestFlowsItem>;
   export type TestCredentials<TCred> = NodeCredentials<TCred>;
 
