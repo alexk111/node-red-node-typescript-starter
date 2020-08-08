@@ -1,0 +1,7 @@
+*
+!dist/**/*
+dist/tsconfig.tsbuildinfo
+!LICENSE
+!README.md
+!package.json
+!yarn.lock
