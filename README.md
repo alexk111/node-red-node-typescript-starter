@@ -45,7 +45,7 @@ node-red-node-typescript-starter/
 
 ## Adding/Removing Node
 
-TODO: Scripts for adding/removing a node
+TODO: Scripts for adding/removing a node (template-based)
 
 ## Developing Node Set
 
@@ -62,6 +62,10 @@ Create a production build:
 ```
 yarn build
 ```
+
+## Testing Node Set in Node-RED
+
+[Read Node-RED docs](https://nodered.org/docs/creating-nodes/first-node#testing-your-node-in-node-red) on how to install the node set into your Node-RED runtime.
 
 ## License
 
