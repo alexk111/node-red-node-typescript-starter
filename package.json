@@ -7,7 +7,7 @@
     "build:editor": "rollup -c rollup.config.editor.js",
     "build:editor:watch": "rollup -c rollup.config.editor.js -w",
     "build:runtime": "tsc -p tsconfig.runtime.json",
-    "build:runtime:watch": "tsc -p tsconfig.runtime.json --watch --preserveWatchOutput",
+    "build:runtime:watch": "tsc -p tsconfig.runtime.watch.json --watch --preserveWatchOutput",
     "build": "rm -rf dist && yarn copy && yarn build:editor && yarn build:runtime",
     "test": "jest --forceExit --detectOpenHandles --colors",
     "test:watch": "jest --forceExit --detectOpenHandles --watchAll",
