@@ -51,7 +51,7 @@ You can quickly scaffold a new node and add it to the node set. Use the followin
 yarn add-node my-new-node-type
 ```
 
-The node generator is template-based. At the moment there is only one template available: `blank` (used by default). Templates are mustache-based and located at `./utils/templates/`. You can make your custom template and use it instead. To generate a node using a template called `my-template`, enter this command:
+The node generator is based on mustache templates. At the moment there is only one template available: `blank` (used by default). Templates are located at `./utils/templates/`. You can make your custom template and use it instead. To generate a node using a template called `my-template`, enter this command:
 
 ```
 yarn add-node my-new-node-type my-template
