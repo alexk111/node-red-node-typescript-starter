@@ -12,7 +12,11 @@ const {
 const path = require("path");
 
 // get args
-const nodeTypeInKebabCase = process.argv[2];
+if (!process.argv[2]) {
+  console.log(red(`Node type not specified`));
+  return;
+}
+const nodeTypeInKebabCase = process.argv[2].toLowerCase();
 const nodeTemplate = process.argv[3] || "blank";
 
 // convert node-type to all cases
