@@ -43,11 +43,21 @@ node-red-node-typescript-starter/
 2. This project is designed to work with `yarn`. If you don't have `yarn` installed, you can install it with `npm install -g yarn`.
 3. Install dependencies: `yarn install`.
 
-## Adding/Removing Node
+## Adding Nodes
 
-TODO: Scripts for adding/removing a node (template-based)
+You can quickly scaffold a new node and add it to the node set. Use the following command to create `my-new-node-type` node:
 
-## Developing Node Set
+```
+yarn add-node my-new-node-type
+```
+
+The node generator is template-based. At the moment there is only one template available: `blank` (used by default). Templates are mustache-based and located at `./utils/templates/`. You can make your custom template and use it instead. To generate a node using a template called `my-template`, enter this command:
+
+```
+yarn add-node my-new-node-type my-template
+```
+
+## Developing Nodes
 
 Build & Test in Watch mode:
 
