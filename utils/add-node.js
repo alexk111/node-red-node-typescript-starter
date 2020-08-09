@@ -80,32 +80,53 @@ async function generateFiles(fromDir, toDir) {
   );
 }
 
-// paths
-const templateDir = path.join(__dirname, "templates", nodeTemplate);
-const newNodeDir = path.join(
-  __dirname,
-  "..",
-  "src",
-  "nodes",
-  nodeTypeInKebabCase
-);
-
-// check if paths ok
-if (!fs.existsSync(templateDir)) {
-  console.log(red(`Template ${bold(nodeTemplate)} does not exist`));
-  return;
-}
-if (fs.existsSync(newNodeDir)) {
-  console.log(red(`Node ${bold(nodeTypeInKebabCase)} already exists`));
-  return;
+async function addNodeToPackageJson() {
+  const pkgJsonPath = path.join(__dirname, "..", "package.json");
+  const pkgJsonData = JSON.parse(await readFile(pkgJsonPath, "utf8"));
+  pkgJsonData["node-red"].nodes[
+    nodeTypeInKebabCase
+  ] = `./dist/nodes/${nodeTypeInKebabCase}/${nodeTypeInKebabCase}.js`;
+  await writeFile(pkgJsonPath, JSON.stringify(pkgJsonData, null, 2), "utf8");
+  console.log(green(`Added ${bold(nodeTypeInKebabCase)} to package.json`));
 }
 
-// we can do that now
-console.log(
-  green(
-    `Generating ${bold(nodeTypeInKebabCase)} node using ${bold(
-      nodeTemplate
-    )} template`
-  )
-);
-generateFiles(templateDir, newNodeDir);
+async function main() {
+  // paths
+  const templateDir = path.join(__dirname, "templates", nodeTemplate);
+  const newNodeDir = path.join(
+    __dirname,
+    "..",
+    "src",
+    "nodes",
+    nodeTypeInKebabCase
+  );
+
+  // check if paths ok
+  if (!fs.existsSync(templateDir)) {
+    console.log(red(`Template ${bold(nodeTemplate)} does not exist`));
+    return;
+  }
+  if (fs.existsSync(newNodeDir)) {
+    console.log(red(`Node ${bold(nodeTypeInKebabCase)} already exists`));
+    return;
+  }
+
+  // we can do that now
+  console.log(
+    green(
+      `Generating ${bold(nodeTypeInKebabCase)} node using ${bold(
+        nodeTemplate
+      )} template`
+    )
+  );
+
+  try {
+    await generateFiles(templateDir, newNodeDir);
+    await addNodeToPackageJson();
+  } catch (e) {
+    console.log(red(`Error: ${bold(e)}`));
+    return;
+  }
+}
+
+main();
