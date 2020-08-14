@@ -8,8 +8,9 @@ const nodeInit: NodeInitializer = (RED): void => {
   ): void {
     RED.nodes.createNode(this, config);
 
-    this.on("input", (msg, _send, _done) => {
-      this.send(msg);
+    this.on("input", (msg, send, done) => {
+      send(msg);
+      done();
     });
   }
 
