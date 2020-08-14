@@ -11,20 +11,22 @@ const nodeInit: NodeInitializer = (RED): void => {
 
     switch (config.operation) {
       case TransformTextOperation.UpperCase: {
-        this.on("input", (msg, _send, _done) => {
+        this.on("input", (msg, send, done) => {
           if (typeof msg.payload === "string") {
             msg.payload = msg.payload.toUpperCase();
           }
-          this.send(msg);
+          send(msg);
+          done();
         });
         break;
       }
       case TransformTextOperation.LowerCase: {
-        this.on("input", (msg, _send, _done) => {
+        this.on("input", (msg, send, done) => {
           if (typeof msg.payload === "string") {
             msg.payload = msg.payload.toLowerCase();
           }
-          this.send(msg);
+          send(msg);
+          done();
         });
         break;
       }
