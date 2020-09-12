@@ -25,7 +25,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-typescript": "^5.0.2",
+    "@rollup/plugin-typescript": "^6.0.0",
     "@types/express": "^4.17.7",
     "@types/jest": "^26.0.9",
     "@types/node": "^14.0.27",

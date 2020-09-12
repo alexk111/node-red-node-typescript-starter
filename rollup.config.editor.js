@@ -52,6 +52,7 @@ const makePlugins = (nodeType) => [
     ],
     target: "es5",
     tsconfig: false,
+    noEmitOnError: process.env.ROLLUP_WATCH ? false : true,
   }),
   htmlBundle(),
 ];
