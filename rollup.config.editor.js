@@ -7,14 +7,20 @@ import packageJson from "./package.json";
 
 const allNodeTypes = Object.keys(packageJson["node-red"].nodes);
 
-const inject = () => {
+const htmlWatch = () => {
   return {
-    name: "postprocess",
+    name: "htmlWatch",
     load(id) {
       const editorDir = path.dirname(id);
       const htmlFiles = glob.sync(path.join(editorDir, "*.html"));
       htmlFiles.map((file) => this.addWatchFile(file));
     },
+  };
+};
+
+const htmlBundle = () => {
+  return {
+    name: "htmlBundle",
     renderChunk(code, chunk, _options) {
       const editorDir = path.dirname(chunk.facadeModuleId);
       const htmlFiles = glob.sync(path.join(editorDir, "*.html"));
@@ -36,6 +42,7 @@ const inject = () => {
 };
 
 const makePlugins = (nodeType) => [
+  htmlWatch(),
   typescript({
     lib: ["es5", "es6", "dom"],
     include: [
@@ -46,7 +53,7 @@ const makePlugins = (nodeType) => [
     target: "es5",
     tsconfig: false,
   }),
-  inject(),
+  htmlBundle(),
 ];
 
 const makeConfigItem = (nodeType) => ({
