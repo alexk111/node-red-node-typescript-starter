@@ -3,17 +3,17 @@ module.exports = {
   extends: [
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
   ],
   plugins: ["jest", "@typescript-eslint"],
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: "module",
   },
   env: {
     node: true,
     jest: true,
-    es6: true
+    es6: true,
   },
   rules: {
     "@typescript-eslint/no-unused-vars": [
@@ -22,14 +22,14 @@ module.exports = {
         argsIgnorePattern: "^_",
         varsIgnorePattern: "^_",
         args: "after-used",
-        ignoreRestSiblings: true
-      }
+        ignoreRestSiblings: true,
+      },
     ],
     "no-unused-expressions": [
       "error",
       {
-        allowTernary: true
-      }
+        allowTernary: true,
+      },
     ],
     "no-console": 0,
     "no-confusing-arrow": 0,
@@ -42,29 +42,29 @@ module.exports = {
     "prefer-arrow-callback": [
       "error",
       {
-        allowNamedFunctions: true
-      }
+        allowNamedFunctions: true,
+      },
     ],
     "class-methods-use-this": 0,
     "no-restricted-syntax": 0,
     "no-param-reassign": [
       "error",
       {
-        props: false
-      }
+        props: false,
+      },
     ],
 
     "import/no-extraneous-dependencies": 0,
 
     "arrow-body-style": 0,
-    "no-nested-ternary": 0
+    "no-nested-ternary": 0,
   },
   overrides: [
     {
       files: ["src/**/*.d.ts"],
       rules: {
-        "@typescript-eslint/triple-slash-reference": 0
-      }
-    }
-  ]
+        "@typescript-eslint/triple-slash-reference": 0,
+      },
+    },
+  ],
 };
