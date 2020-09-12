@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-MY_NODESET_NAME",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Description of the node set here",
   "scripts": {
     "add-node": "node ./utils/add-node.js",
