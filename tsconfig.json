@@ -10,7 +10,7 @@
     "rootDir": "src",
     "removeComments": false,
     "noEmit": false,
-    "importHelpers": true,
+    "importHelpers": false,
     "preserveWatchOutput": true,
 
     "strict": true,
