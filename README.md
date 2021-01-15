@@ -51,18 +51,27 @@ You can quickly scaffold a new node and add it to the node set. Use the followin
 yarn add-node my-new-node-type
 ```
 
-The node generator is based on mustache templates. At the moment there are two templates available:
+The node generator is based on mustache templates. At the moment there are three templates available:
 
 - `blank` (used by default) - basic node for Node-RED >=1.0
 - `blank-0` - node with a backward compatibility for running on Node-RED <1.0
+- `config` - configuration node
 
-To generate a node using a template called `my-template`, enter this command:
+To generate a node using a template, specify it as the third argument:
 
 ```
-yarn add-node my-new-node-type my-template
+yarn add-node my-new-node-type blank
 ```
 
-To make your custom-made template available, add it to `./utils/templates/`.
+or
+
+```
+yarn add-node my-new-node-config config
+```
+
+### Adding Node Templates
+
+If you want to make your own template available, add it to `./utils/templates/`.
 
 ## Developing Nodes
 
