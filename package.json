@@ -6,7 +6,7 @@
     "add-node": "node ./utils/add-node.js",
     "copy": "copyfiles -u 2 \"./src/nodes/**/*.{png,svg}\" \"./dist/nodes/\"",
     "build:editor": "rollup -c rollup.config.editor.js",
-    "build:editor:watch": "rollup -c rollup.config.editor.js -w",
+    "build:editor:watch": "rollup -c rollup.config.editor.js -w --bundleConfigAsCjs",
     "build:runtime": "tsc -p tsconfig.runtime.json",
     "build:runtime:watch": "tsc -p tsconfig.runtime.watch.json --watch --preserveWatchOutput",
     "build": "rm -rf dist && yarn copy && yarn build:editor && yarn build:runtime",
