@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "module": "commonjs",
+    "module": "node16",
     "lib": ["es2018", "esnext.asynciterable", "dom"],
     "allowJs": false,
     "noEmitOnError": true,
@@ -21,13 +21,14 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
 
-    "moduleResolution": "node",
-    "baseUrl": "./",
+    "moduleResolution": "node16",
     "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "preserveConstEnums": true,
     "forceConsistentCasingInFileNames": true,
 
+    "types": ["jest", "node"],
     "typeRoots": ["./src/types", "./node_modules/@types"]
   },
   "include": ["src"],

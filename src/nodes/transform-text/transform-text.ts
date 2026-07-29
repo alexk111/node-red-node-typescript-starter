@@ -1,6 +1,6 @@
-import { NodeInitializer } from "node-red";
-import { TransformTextNode, TransformTextNodeDef } from "./modules/types";
-import { TransformTextOperation } from "./shared/types";
+import { NodeInitializer } from 'node-red';
+import { TransformTextNode, TransformTextNodeDef } from './modules/types.js';
+import { TransformTextOperation } from './shared/types.js';
 
 const nodeInit: NodeInitializer = (RED): void => {
   function TransformTextNodeConstructor(
@@ -11,8 +11,8 @@ const nodeInit: NodeInitializer = (RED): void => {
 
     switch (config.operation) {
       case TransformTextOperation.UpperCase: {
-        this.on("input", (msg, send, done) => {
-          if (typeof msg.payload === "string") {
+        this.on('input', (msg, send, done) => {
+          if (typeof msg.payload === 'string') {
             msg.payload = msg.payload.toUpperCase();
           }
           send(msg);
@@ -21,8 +21,8 @@ const nodeInit: NodeInitializer = (RED): void => {
         break;
       }
       case TransformTextOperation.LowerCase: {
-        this.on("input", (msg, send, done) => {
-          if (typeof msg.payload === "string") {
+        this.on('input', (msg, send, done) => {
+          if (typeof msg.payload === 'string') {
             msg.payload = msg.payload.toLowerCase();
           }
           send(msg);
@@ -33,7 +33,7 @@ const nodeInit: NodeInitializer = (RED): void => {
     }
   }
 
-  RED.nodes.registerType("transform-text", TransformTextNodeConstructor);
+  RED.nodes.registerType('transform-text', TransformTextNodeConstructor);
 };
 
-export = nodeInit;
+export default nodeInit;

@@ -1,18 +1,18 @@
-import fs from "fs";
-import glob from "glob";
-import path from "path";
-import typescript from "@rollup/plugin-typescript";
+import fs from 'fs';
+import { glob } from 'glob';
+import path from 'path';
+import typescript from '@rollup/plugin-typescript';
 
-import packageJson from "./package.json";
+import packageJson from './package.json' with { type: 'json' };
 
-const allNodeTypes = Object.keys(packageJson["node-red"].nodes);
+const allNodeTypes = Object.keys(packageJson['node-red'].nodes);
 
 const htmlWatch = () => {
   return {
-    name: "htmlWatch",
+    name: 'htmlWatch',
     load(id) {
       const editorDir = path.dirname(id);
-      const htmlFiles = glob.sync(path.join(editorDir, "*.html"));
+      const htmlFiles = glob.sync(path.join(editorDir, '*.html'));
       htmlFiles.map((file) => this.addWatchFile(file));
     },
   };
@@ -20,22 +20,22 @@ const htmlWatch = () => {
 
 const htmlBundle = () => {
   return {
-    name: "htmlBundle",
-    renderChunk(code, chunk, _options) {
+    name: 'htmlBundle',
+    renderChunk(code, chunk) {
       const editorDir = path.dirname(chunk.facadeModuleId);
-      const htmlFiles = glob.sync(path.join(editorDir, "*.html"));
+      const htmlFiles = glob.sync(path.join(editorDir, '*.html'));
       const htmlContents = htmlFiles.map((fPath) => fs.readFileSync(fPath));
 
       code =
         '<script type="text/javascript">\n' +
         code +
-        "\n" +
-        "</script>\n" +
-        htmlContents.join("\n");
+        '\n' +
+        '</script>\n' +
+        htmlContents.join('\n');
 
       return {
         code,
-        map: { mappings: "" },
+        map: { mappings: '' },
       };
     },
   };
@@ -44,13 +44,15 @@ const htmlBundle = () => {
 const makePlugins = (nodeType) => [
   htmlWatch(),
   typescript({
-    lib: ["es5", "es6", "dom"],
+    lib: ['es5', 'es6', 'dom'],
     include: [
       `src/nodes/${nodeType}/${nodeType}.html/**/*.ts`,
       `src/nodes/${nodeType}/shared/**/*.ts`,
-      "src/nodes/shared/**/*.ts",
+      'src/nodes/shared/**/*.ts',
     ],
-    target: "es5",
+    target: 'es2020',
+    module: 'node16',
+    moduleResolution: 'node16',
     tsconfig: false,
     noEmitOnError: process.env.ROLLUP_WATCH ? false : true,
   }),
@@ -61,7 +63,7 @@ const makeConfigItem = (nodeType) => ({
   input: `src/nodes/${nodeType}/${nodeType}.html/index.ts`,
   output: {
     file: `dist/nodes/${nodeType}/${nodeType}.html`,
-    format: "iife",
+    format: 'iife',
   },
   plugins: makePlugins(nodeType),
   watch: {

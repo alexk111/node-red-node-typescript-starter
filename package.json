@@ -2,19 +2,20 @@
   "name": "node-red-contrib-MY_NODESET_NAME",
   "version": "0.2.3",
   "description": "Description of the node set here",
+  "type": "module",
   "scripts": {
-    "add-node": "node ./utils/add-node.js",
+    "add-node": "node ./utils/add-node.cjs",
     "copy": "copyfiles -u 2 \"./src/nodes/**/*.{png,svg}\" \"./dist/nodes/\"",
     "build:editor": "rollup -c rollup.config.editor.js",
     "build:editor:watch": "rollup -c rollup.config.editor.js -w",
     "build:runtime": "tsc -p tsconfig.runtime.json",
     "build:runtime:watch": "tsc -p tsconfig.runtime.watch.json --watch --preserveWatchOutput",
-    "build": "rm -rf dist && yarn copy && yarn build:editor && yarn build:runtime",
-    "test": "jest --forceExit --detectOpenHandles --colors",
-    "test:watch": "jest --forceExit --detectOpenHandles --watchAll",
-    "dev": "rm -rf dist && yarn copy && concurrently --kill-others --names 'COPY,EDITOR,RUNTIME,TEST' --prefix '({name})' --prefix-colors 'yellow.bold,cyan.bold,greenBright.bold,magenta.bold' 'onchange -v \"src/**/*.png\" \"src/**/*.svg\" -- yarn copy' 'yarn build:editor:watch' 'yarn build:runtime:watch' 'sleep 10; yarn test:watch'",
-    "lint": "prettier --ignore-path .eslintignore --check '**/*.{js,ts,md}'; eslint --ext .js,.ts .",
-    "lint:fix": "prettier --ignore-path .eslintignore --write '**/*.{js,ts,md}'; eslint --ext .js,.ts . --fix"
+    "build": "rm -rf dist && npm run copy && npm run build:editor && npm run build:runtime",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --forceExit --detectOpenHandles --colors",
+    "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --forceExit --detectOpenHandles --watchAll",
+    "dev": "rm -rf dist && npm run copy && concurrently --kill-others --names 'COPY,EDITOR,RUNTIME,TEST' --prefix '({name})' --prefix-colors 'yellow.bold,cyan.bold,greenBright.bold,magenta.bold' 'onchange -v \"src/**/*.png\" \"src/**/*.svg\" -- npm run copy' 'npm run build:editor:watch' 'npm run build:runtime:watch' 'sleep 10; npm run test:watch'",
+    "lint": "prettier --check '**/*.{js,ts,md}'; eslint --ext .js,.ts .",
+    "lint:fix": "prettier --write '**/*.{js,ts,md}'; eslint --ext .js,.ts . --fix"
   },
   "author": "Alex Kaul",
   "license": "MIT",
@@ -23,46 +24,35 @@
       "transform-text": "./dist/nodes/transform-text/transform-text.js"
     }
   },
-  "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.0.0",
-    "@types/express": "^4.17.9",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.10",
-    "@types/node-red": "^1.1.1",
-    "@types/node-red-node-test-helper": "^0.2.1",
-    "@types/sinon": "^9.0.9",
-    "@types/supertest": "^2.0.10",
-    "@typescript-eslint/eslint-plugin": "^4.9.0",
-    "@typescript-eslint/parser": "^4.9.0",
-    "colorette": "^1.2.1",
-    "concurrently": "^5.3.0",
+    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/js": "^10.0.1",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.1.2",
+    "@types/node-red": "^1.3.5",
+    "@types/node-red-node-test-helper": "^0.3.5",
+    "@types/sinon": "^22.0.0",
+    "@types/supertest": "^7.2.1",
+    "colorette": "^2.0.20",
+    "concurrently": "^10.0.4",
     "copyfiles": "^2.4.1",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-prettier": "^3.1.4",
-    "glob": "^7.1.6",
-    "jest": "^26.6.3",
-    "mustache": "^4.0.1",
-    "node-red": "^1.2.6",
-    "node-red-node-test-helper": "^0.2.5",
-    "onchange": "^7.0.2",
-    "prettier": "^2.2.1",
-    "rollup": "^2.23.0",
-    "ts-jest": "^26.4.4",
-    "typescript": "^4.1.2"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "testMatch": [
-      "**/__tests__/**/*.test.ts"
-    ]
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jest": "^29.16.0",
+    "eslint-plugin-prettier": "^5.5.6",
+    "glob": "^13.0.6",
+    "globals": "^17.8.0",
+    "jest": "^30.4.2",
+    "mustache": "^4.2.0",
+    "node-red": "^5.0.1",
+    "node-red-node-test-helper": "^0.3.6",
+    "onchange": "^7.1.0",
+    "prettier": "^3.9.6",
+    "rollup": "^4.62.3",
+    "ts-jest": "^29.4.12",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.65.0"
   }
 }
