@@ -47,7 +47,10 @@ node-red-node-typescript-starter/
 ## Getting Started
 
 1. Generate a new GitHub repository by clicking the `Use this template` button at the top of the repository homepage, then clone your new repo. Or you might just clone this repo: `git clone https://github.com/alexk111/node-red-node-typescript-starter.git` and cd into it: `cd node-red-node-typescript-starter`.
-2. Edit `name`, `version`, `description` in the `package.json`.
+2. Edit `package.json`:
+    - `name` - should be a [scoped name](https://docs.npmjs.com/cli/v8/using-npm/scope) as per [Node-RED recommendations](https://nodered.org/blog/2022/01/31/introducing-scorecard#changing-our-recommended-naming-convention)
+    - `version`
+    - `description`
 3. Install dependencies: `npm install`.
 
 ## Developing Nodes

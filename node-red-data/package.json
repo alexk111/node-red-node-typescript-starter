@@ -4,6 +4,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "node-red-contrib-MY_NODESET_NAME": "file:.."
+    "@my-scope/node-red-sample": "file:.."
   }
 }

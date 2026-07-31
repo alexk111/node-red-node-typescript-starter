@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-MY_NODESET_NAME",
+  "name": "@my-scope/node-red-sample",
   "version": "0.4.0",
   "description": "Description of the node set here",
   "type": "module",
