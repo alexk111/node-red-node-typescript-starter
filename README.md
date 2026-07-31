@@ -2,6 +2,13 @@
 
 This is a quick-start template repository for creating new Node-RED node sets in TypeScript.
 
+What's included:
+- TypeScript compilation
+- Unit testing with Jest
+- Local Node-RED instance with your node set pre-installed on the palette
+- CLI scaffolding for new nodes from templates
+- Dev watch mode
+
 ## Project Structure
 
 ```
@@ -42,6 +49,28 @@ node-red-node-typescript-starter/
 1. Generate a new GitHub repository by clicking the `Use this template` button at the top of the repository homepage, then clone your new repo. Or you might just clone this repo: `git clone https://github.com/alexk111/node-red-node-typescript-starter.git` and cd into it: `cd node-red-node-typescript-starter`.
 2. Install dependencies: `npm install`.
 
+## Developing Nodes
+
+Build, Test & Start Node-RED with your node set on the palette, in Watch mode:
+
+```
+npm run dev
+```
+
+## Building Node Set
+
+Create a production build:
+
+```
+npm run build
+```
+
+Start Node-RED with the built node set on the palette:
+
+```
+npm run start
+```
+
 ## Adding Nodes
 
 You can quickly scaffold a new node and add it to the node set. Use the following command to create `my-new-node-type` node:
@@ -72,22 +101,6 @@ npm run add-node my-new-node-config config
 
 If you want to make your own template available, add it to `./utils/templates/`.
 
-## Developing Nodes
-
-Build & Test in Watch mode:
-
-```
-npm run dev
-```
-
-## Building Node Set
-
-Create a production build:
-
-```
-npm run build
-```
-
 ## Backers 💝
 
 [[Become a backer](https://mynode.alexkaul.com/gh-donate)]
@@ -102,10 +115,6 @@ npm run build
 [![Backer](https://mynode.alexkaul.com/gh-backer/top/7/avatar/60)](https://mynode.alexkaul.com/gh-backer/top/7/profile)
 [![Backer](https://mynode.alexkaul.com/gh-backer/top/8/avatar/60)](https://mynode.alexkaul.com/gh-backer/top/8/profile)
 [![Backer](https://mynode.alexkaul.com/gh-backer/top/9/avatar/60)](https://mynode.alexkaul.com/gh-backer/top/9/profile)
-
-## Testing Node Set in Node-RED
-
-[Read Node-RED docs](https://nodered.org/docs/creating-nodes/first-node#testing-your-node-in-node-red) on how to install the node set into your Node-RED runtime.
 
 ## License
 
