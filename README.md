@@ -51,6 +51,11 @@ node-red-node-typescript-starter/
     - `name` - should be a [scoped name](https://docs.npmjs.com/cli/v8/using-npm/scope) as per [Node-RED recommendations](https://nodered.org/blog/2022/01/31/introducing-scorecard#changing-our-recommended-naming-convention)
     - `version`
     - `description`
+    - `repository`
+    - `keywords` - add the `node-red` keyword to help make your nodes discoverable within the npm repository. **Do NOT add** it until you are happy that the node is stable and working correctly, and documented sufficiently for others to be able to use it.
+    - `author`
+    - `node-red`.`version` - specify supported node-red versions
+    - `engines`.`node` - specify supported node.js versions
 3. Install dependencies: `npm install`.
 
 ## Developing Nodes
@@ -59,20 +64,6 @@ Build, Test & Start Node-RED with your node set on the palette, in Watch mode:
 
 ```
 npm run dev
-```
-
-## Building Node Set
-
-Create a production build:
-
-```
-npm run build
-```
-
-Start Node-RED with the built node set on the palette:
-
-```
-npm run start
 ```
 
 ## Adding Nodes
@@ -104,6 +95,28 @@ npm run add-node my-new-node-config config
 ### Adding Node Templates
 
 If you want to make your own template available, add it to `./utils/templates/`.
+
+## Building Node Set
+
+Create a production build:
+
+```
+npm run build
+```
+
+Start Node-RED with the built node set on the palette:
+
+```
+npm run start
+```
+
+## Validation
+
+Before publishing the package you built, run the full suite of validation tests to see how your [Node Scorecard](https://nodered.org/blog/2022/01/31/introducing-scorecard) will look on Flow Library:
+
+```
+npm run validate
+```
 
 ## Backers 💝
 

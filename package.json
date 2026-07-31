@@ -2,6 +2,21 @@
   "name": "@my-scope/node-red-sample",
   "version": "0.4.0",
   "description": "Description of the node set here",
+  "repository": "https://github.com/alexk111/node-red-node-typescript-starter",
+  "keywords": [
+    "node-red"
+  ],
+  "author": "Alex Kaul",
+  "node-red": {
+    "version": ">=1.3.0",
+    "nodes": {
+      "transform-text": "./dist/nodes/transform-text/transform-text.js"
+    }
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "add-node": "node ./utils/add-node.cjs",
@@ -12,6 +27,7 @@
     "build:runtime:watch": "tsc -p tsconfig.runtime.watch.json --watch --preserveWatchOutput",
     "build": "rm -rf dist && npm run copy && npm run build:editor && npm run build:runtime",
     "start": "npm run nr:setup && npm run nr:start",
+    "validate": "npx node-red-dev validate",
     "test": "node --experimental-vm-modules node_modules/.bin/jest --forceExit --detectOpenHandles --colors",
     "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --forceExit --detectOpenHandles --watchAll",
     "nr:setup": "cp -n ./node_modules/node-red/settings.js ./node-red-data/settings.cjs && cd node-red-data && npm install ..",
@@ -20,13 +36,6 @@
     "dev": "rm -rf dist && npm run copy && npm run nr:setup && concurrently --kill-others --names 'COPY,EDITOR,RUNTIME,TEST,NODE-RED' --prefix '({name})' --prefix-colors 'yellow.bold,cyan.bold,greenBright.bold,magenta.bold' 'onchange -v \"src/**/*.png\" \"src/**/*.svg\" -- npm run copy' 'npm run build:editor:watch' 'npm run build:runtime:watch' 'sleep 10; npm run test:watch' 'sleep 10; npm run nr:watch'",
     "lint": "prettier --check '**/*.{js,ts,md}'; eslint --ext .js,.ts .",
     "lint:fix": "prettier --write '**/*.{js,ts,md}'; eslint --ext .js,.ts . --fix"
-  },
-  "author": "Alex Kaul",
-  "license": "MIT",
-  "node-red": {
-    "nodes": {
-      "transform-text": "./dist/nodes/transform-text/transform-text.js"
-    }
   },
   "files": [
     "dist/"
