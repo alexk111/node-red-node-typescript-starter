@@ -28,6 +28,9 @@
       "transform-text": "./dist/nodes/transform-text/transform-text.js"
     }
   },
+  "files": [
+    "dist/"
+  ],
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^10.0.1",
