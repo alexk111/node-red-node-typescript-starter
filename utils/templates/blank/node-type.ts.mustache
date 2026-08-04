@@ -1,5 +1,5 @@
 import { NodeInitializer } from "node-red";
-import { <%NodeTypePascalCase%>Node, <%NodeTypePascalCase%>NodeDef } from "./modules/types";
+import { <%NodeTypePascalCase%>Node, <%NodeTypePascalCase%>NodeDef } from "./modules/types.js";
 
 const nodeInit: NodeInitializer = (RED): void => {
   function <%NodeTypePascalCase%>NodeConstructor(
@@ -17,4 +17,4 @@ const nodeInit: NodeInitializer = (RED): void => {
   RED.nodes.registerType("<%NodeTypeKebabCase%>", <%NodeTypePascalCase%>NodeConstructor);
 };
 
-export = nodeInit;
+export default nodeInit;

@@ -1,0 +1,59 @@
+import testHelper, { TestFlowsItem } from 'node-red-node-test-helper';
+import <%NodeTypeCamelCase%>Node from '../nodes/<%NodeTypeKebabCase%>/<%NodeTypeKebabCase%>.js';
+import { <%NodeTypePascalCase%>NodeDef } from '../nodes/<%NodeTypeKebabCase%>/modules/types.js';
+
+type FlowsItem = TestFlowsItem<<%NodeTypePascalCase%>NodeDef>;
+type Flows = Array<FlowsItem>;
+
+describe('<%NodeTypeKebabCase%> node', () => {
+  beforeEach((done) => {
+    testHelper.startServer(done);
+  });
+
+  afterEach((done) => {
+    testHelper.unload().then(() => {
+      testHelper.stopServer(done);
+    });
+  });
+
+  it('should be loaded', (done) => {
+    const flows: Flows = [
+      { id: 'n1', type: '<%NodeTypeKebabCase%>', name: '<%NodeTypeKebabCase%>' },
+    ];
+    testHelper.load(<%NodeTypeCamelCase%>Node, flows, () => {
+      const n1 = testHelper.getNode('n1');
+      expect(n1).toBeTruthy();
+      expect(n1.name).toEqual('<%NodeTypeKebabCase%>');
+      done();
+    });
+  });
+
+  /*
+  describe('in X mode', () => {
+    let flows: Flows;
+    beforeEach(() => {
+      flows = [
+        {
+          id: 'n1',
+          type: '<%NodeTypeKebabCase%>',
+          name: '<%NodeTypeKebabCase%>',
+          mode: 'X', // some node option
+          wires: [['n2']],
+        },
+        { id: 'n2', type: 'helper' },
+      ];
+    });
+    it("should ...", (done) => {
+      testHelper.load(<%NodeTypeCamelCase%>Node, flows, () => {
+        const n2 = testHelper.getNode('n2');
+        const n1 = testHelper.getNode('n1');
+        n2.on('input', (msg: unknown) => {
+          expect(msg.payload).toBe('test');
+          done();
+        });
+        n1.receive({ payload: 'test' });
+      });
+    });
+  });
+  */
+});

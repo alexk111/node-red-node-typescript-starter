@@ -41,7 +41,7 @@ const mustacheData = {
 };
 
 // node files generator
-async function generateFiles(fromDir, toDir) {
+async function generateFiles(fromDir, toDir, toDirTests) {
   // always called for a nonexistent toDir
   await mkdir(toDir);
   console.log(green(`Created directory: ${bold(toDir)}`));
@@ -57,7 +57,7 @@ async function generateFiles(fromDir, toDir) {
 
       if (fromDirent.isDirectory()) {
         // directory -> recursive call
-        await generateFiles(fromFilePath, toFilePath);
+        await generateFiles(fromFilePath, toFilePath, toDirTests);
       } else {
         // file -> generate
         const ext = path.extname(toFilePath);
@@ -67,10 +67,18 @@ async function generateFiles(fromDir, toDir) {
           console.log(green(`Copied file: ${bold(toFilePath)}`));
         } else {
           // generate from mustache template
-          toFilePath = path.join(
-            path.dirname(toFilePath),
-            path.basename(toFilePath, ext)
-          );
+          const basename = path.basename(toFilePath, ext);
+          if (basename.endsWith('.test.ts')) {
+            toFilePath = path.join(
+              toDirTests,
+              basename
+            );
+          } else {
+            toFilePath = path.join(
+              path.dirname(toFilePath),
+              basename
+            );
+          }
           const tpl = await readFile(fromFilePath, "utf8");
           const renderedStr = mustache.render(tpl, mustacheData, {}, [
             "<%",
@@ -104,6 +112,12 @@ async function main() {
     "nodes",
     nodeTypeInKebabCase
   );
+  const testsDir = path.join(
+    __dirname,
+    "..",
+    "src",
+    "__tests__"
+  );
 
   // check if paths ok
   if (!fs.existsSync(templateDir)) {
@@ -114,7 +128,9 @@ async function main() {
     console.log(red(`Node ${bold(nodeTypeInKebabCase)} already exists`));
     return;
   }
-
+  if (!fs.existsSync(testsDir)) {
+    await mkdir(testsDir);
+  }
   // we can do that now
   console.log(
     green(
@@ -125,7 +141,7 @@ async function main() {
   );
 
   try {
-    await generateFiles(templateDir, newNodeDir);
+    await generateFiles(templateDir, newNodeDir, testsDir);
     await addNodeToPackageJson();
   } catch (e) {
     console.log(red(`Error: ${bold(e)}`));
